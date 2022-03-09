@@ -3,7 +3,6 @@ const db = require('./db');
 const Binance = require('binance-api-node').default;
 const apiUrl = 'https://testnet.binance.vision';
 
-
 (async () => {
     const clients = await db.findClients();
     if ( clients.length > 0 ){
