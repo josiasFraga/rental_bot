@@ -186,7 +186,9 @@ async function rebuy(order_id, max_rebuys, symbol, order_quanitty, symbol_price)
   if ( createOrder && createOrder.status == 'FILLED' ) {
     await buscaSaldosUsuario(symbol);
     const now = moment().tz("America/Sao_Paulo").format('YYYY-MM-DD HH:mm:ss');
-    return await db.insertRebuy({client_order_id: order_id, status: 'P', last_update: now, closed: 'N', price: symbol_price, cummulative_quote_qty: createOrder.cummulativeQuoteQty, binance_return_buy: JSON.stringify(createOrder), binance_return_sell: null});
+    const dataToSave = {client_order_id: order_id, status: 'P', last_update: now, closed: 'N', price: symbol_price, cummulative_quote_qty: createOrder.cummulativeQuoteQty, cummulative_quote_qty_selled: null, binance_return_buy: JSON.stringify(createOrder), binance_return_sell: null};
+    await _log('Dados para salvar rebuy', 'debug', dataToSave);
+    return await db.insertRebuy(dataToSave);
   }
 
 }
@@ -387,7 +389,7 @@ processOrder = async(loop) => {
         //se não econtrou a recompra aberta mais baixa, faz uma recompra, se configurado
         if ( !slowest_rebuy || !slowest_rebuy[0] || !slowest_rebuy[0].id ){
 
-          await _log('comprar mais: ' + symbol_price[symbol]);
+          await _log('comprar mais 1: ' + symbol_price[symbol]);
           await rebuy(o_id, max_rebuys, symbol, order_quanitty, symbol_price[symbol]);
 
         //se econtrou uma recompra aberta
@@ -401,7 +403,7 @@ processOrder = async(loop) => {
           variacao_recompra = await calculaVariacao(slowest_rebuy_payed_ammout, slowest_rebuy_current_sale_value);
 
           if ( parseFloat(variacao_recompra) <= -(parseFloat(fall_to_rebuy)) ) {
-            await _log('comprar mais: ' + symbol_price[symbol]);
+            await _log('comprar mais 2: ' + symbol_price[symbol]);
             await rebuy(o_id, max_rebuys, symbol, order_quanitty, symbol_price[symbol]);
           }
 

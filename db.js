@@ -87,7 +87,7 @@ async function insertRebuy(data) {
 
     const conn = await connect();
     const query = 'INSERT INTO client_reoders (client_order_id, status, last_update, closed, price, cummulative_quote_qty, cummulative_quote_qty_selled, binance_return_buy, binance_return_sell) VALUES(?,?,?,?,?,?,?,?,?)';
-    const values = [data.client_order_id, data.status, data.last_update, data.closed, data.price, data.binance_return_buy, data.binance_return_sell];
+    const values = [data.client_order_id, data.status, data.last_update, data.closed, data.price, data.cummulative_quote_qty, data.cummulative_quote_qty_selled, data.binance_return_buy, data.binance_return_sell];
     return await conn.query(query, values);
 
 }
