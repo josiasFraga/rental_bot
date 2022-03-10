@@ -189,6 +189,8 @@ async function rebuy(order_id, max_rebuys, symbol, order_quanitty, symbol_price)
     const dataToSave = {client_order_id: order_id, status: 'P', last_update: now, closed: 'N', price: symbol_price, cummulative_quote_qty: createOrder.cummulativeQuoteQty, cummulative_quote_qty_selled: null, binance_return_buy: JSON.stringify(createOrder), binance_return_sell: null};
     await _log('Dados para salvar rebuy', 'debug', dataToSave);
     return await db.insertRebuy(dataToSave);
+  } else {
+    await _log('Ordem ainda não filled', 'debug', createOrder);
   }
 
 }
@@ -384,7 +386,7 @@ processOrder = async(loop) => {
         
       if ( parseFloat(variacao) <= -(parseFloat(fall_to_rebuy)) ) {
         //procura a recompra aberta mais baixa
-        const slowest_rebuy = await await db.findLastOpendedReorder(o_id);
+        const slowest_rebuy = await db.findLastOpendedReorder(o_id);
   
         //se não econtrou a recompra aberta mais baixa, faz uma recompra, se configurado
         if ( !slowest_rebuy || !slowest_rebuy[0] || !slowest_rebuy[0].id ){
