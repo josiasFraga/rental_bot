@@ -206,7 +206,7 @@ async function sell(order_id, symbol, order_quanitty, symbol_price) {
   if ( count_opened_rebuys > 0 ){
     await _log('recompras encontradas, liquidando-as também');
     const opened_rebuys_bd = await db.findAllOpendedReorders(order_id);
-    await opened_rebuys_bd.forEach(async (element, index) => {
+    for( const element of opened_rebuys_bd ) {
 
       await _log('...Vendendo recompra na binance [' + element.id +']');
       createOrder = await client.order({
@@ -256,7 +256,7 @@ async function checkRebuys(order_id, symbol, order_quanitty, symbol_price, expec
 
   await _log('recompras encontradas, verificando-as');
   const opened_rebuys_bd = await db.findAllOpendedReorders(order_id);
-  await opened_rebuys_bd.forEach(async (element, index) => {
+  for( const element of opened_rebuys_bd ) {
 
     const price = element.price;
     const payed_ammout = parseFloat(price)*parseFloat(order_quanitty);
