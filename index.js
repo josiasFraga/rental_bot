@@ -4,11 +4,10 @@ const cp = require('child_process');
 const modulePath = `${__dirname}/worker.js`;
 const interval = process.env.CROWLER_INTERVAL;
 
-
 setInterval(async ()=>{
     const orders = await db.selectOrderNotStateds();
     if ( orders.length > 0 ){
-        orders.forEach((el, index) => {
+        for ( const el of orders) {
             console.log(new Date(), 'Iniciando worker - ' + el.name + ' - ' + el.id);
             //Create new worker
             const worker = cp.fork(modulePath, [el.api_key, el.public_key, el.id]);
@@ -22,7 +21,7 @@ setInterval(async ()=>{
                 worker.kill('SIGHUP');
             });
             //worker.send(el);
-        });
+        };
     }
 },interval);
 

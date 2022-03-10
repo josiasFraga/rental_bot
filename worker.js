@@ -222,7 +222,7 @@ async function sell(order_id, symbol, order_quanitty, symbol_price) {
         const now = moment().tz("America/Sao_Paulo").format('YYYY-MM-DD HH:mm:ss');
         return await db.updateReorder(element.id, {status: 'P', last_update: now, closed: 'Y', price_selled: symbol_price, cummulative_quote_qty_selled: createOrder.cummulativeQuoteQty, binance_return_sell: JSON.stringify(createOrder)});
       }
-    });
+    };
   }
 
   await _log('...Vendendo ordem principal na binance');
@@ -293,7 +293,7 @@ async function checkRebuys(order_id, symbol, order_quanitty, symbol_price, expec
       }
 
     }
-  });
+  };
 }
 
 
