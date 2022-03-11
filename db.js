@@ -6,6 +6,7 @@ async function connect(){
         return global.connection;
 
     const mysql = require("mysql2/promise");
+    //const connection = await mysql.createConnection("mysql://root:@localhost:3306/rentalbot");
     const connection = await mysql.createConnection("mysql://rentalbot:zap3537shop11@localhost:3306/rentalbot");
     //const connection = await mysql.createConnection("mysql://rentalbot:zap3537shop11@190.102.40.78:3306/rentalbot");
     console.log("Conectou no MySQL!");
@@ -19,6 +20,22 @@ async function findClients() {
     const query = conn.query('SELECT * FROM clients');
     const rows = await query;
     return rows[0];
+}
+
+async function findPairs() {
+    const conn = await connect();
+    const query = conn.query('SELECT * FROM pair_check WHERE pair_check.checked IS NULL');
+    const rows = await query;
+    return rows[0];
+}
+
+async function updatePair(id, pair) {
+    const conn = await connect();
+    let query = 'UPDATE pair_check SET checked=?, valid=? WHERE id=?';
+    let values = [pair.checked, pair.valid, id];
+
+    return await conn.query(query, values);
+
 }
 
 async function selectOrderNotStateds() {
@@ -161,4 +178,4 @@ async function updateReorder(id, order) {
 
 }
 
-module.exports = {selectOrderNotStateds, updateOrder, findOrder, insertRebuy, countReorders, findLastOpendedReorder, updateReorder, findAllOpendedReorders, findClients};
+module.exports = {selectOrderNotStateds, updateOrder, findOrder, insertRebuy, countReorders, findLastOpendedReorder, updateReorder, findAllOpendedReorders, findClients, findPairs, updatePair};

@@ -1,4 +1,3 @@
-
 const db = require('./db');
 const Binance = require('binance-api-node').default;
 const apiUrl = 'https://testnet.binance.vision';
@@ -21,4 +20,3 @@ const apiUrl = 'https://testnet.binance.vision';
         });
     }
 })()
-

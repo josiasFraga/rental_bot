@@ -55,7 +55,6 @@ async function _log(message, type = 'info', data = {}){
   return true;
 }
 
-
 const client = Binance({
     apiKey: apiKey,
     apiSecret: apiSecret,
@@ -427,7 +426,11 @@ processOrder = async(loop) => {
     await _log('________________________________________' );
 
   }catch(error){
-    await _log(`${pid} has broken! ${error.stack}`, 'error');
+    if (error.code === -1121) {
+      await _log(`${pid} Erro: Par inválido`, 'error');
+    } else {
+      await _log(`${pid} has broken! ${error.stack}`, 'error');
+    }
     process.exit(0);
   }
 
