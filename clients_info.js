@@ -1,6 +1,7 @@
 const db = require('./db');
 const Binance = require('binance-api-node').default;
 const apiUrl = 'https://testnet.binance.vision';
+//const apiUrl = 'https://api3.binance.com';
 
 (async () => {
     const clients = await db.findClients();
@@ -12,7 +13,7 @@ const apiUrl = 'https://testnet.binance.vision';
                 apiKey: el.api_key,
                 apiSecret: el.public_key,
                 getTime: () => Date.now(),
-                httpBase: apiUrl
+                //httpBase: apiUrl
             })
             await new Promise(resolve => setTimeout(resolve, 2000));
             const accountInfo = await client.accountInfo();
