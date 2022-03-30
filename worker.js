@@ -113,6 +113,55 @@ async function getBuyerSimbol(symbol){
   else if ( symbol.indexOf('BUSD') === 0 ) {
     return symbol.replace('BUSD', '');
   }
+  else if ( symbol.indexOf('SAND') === 0 ) {
+    return symbol.replace('SAND', '');
+  }
+  else if ( symbol.indexOf('BNB') === 0 ) {
+    return symbol.replace('BNB', '');
+  }
+  else if ( symbol.indexOf('AVAX') === 0 ) {
+    return symbol.replace('AVAX', '');
+  }
+  else if ( symbol.indexOf('FTM') === 0 ) {
+    return symbol.replace('FTM', '');
+  }
+  else if ( symbol.indexOf('SOL') === 0 ) {
+    return symbol.replace('SOL', '');
+  }
+  else if ( symbol.indexOf('MATIC') === 0 ) {
+    return symbol.replace('MATIC', '');
+  }
+  else if ( symbol.indexOf('DOT') === 0 ) {
+    return symbol.replace('DOT', '');
+  }
+  else if ( symbol.indexOf('LINK') === 0 ) {
+    return symbol.replace('LINK', '');
+  }
+  else if ( symbol.indexOf('ATOM') === 0 ) {
+    return symbol.replace('ATOM', '');
+  }
+  else if ( symbol.indexOf('LUNA') === 0 ) {
+    return symbol.replace('LUNA', '');
+  }
+  else if ( symbol.indexOf('ADA') === 0 ) {
+    return symbol.replace('ADA', '');
+  }
+  else if ( symbol.indexOf('NEAR') === 0 ) {
+    return symbol.replace('NEAR', '');
+  }
+  else if ( symbol.indexOf('FTT') === 0 ) {
+    return symbol.replace('FTT', '');
+  }
+  else if ( symbol.indexOf('EGLD') === 0 ) {
+    return symbol.replace('EGLD', '');
+  }
+  else if ( symbol.indexOf('HNT') === 0 ) {
+    return symbol.replace('HNT', '');
+  }
+  else if ( symbol.indexOf('THETA') === 0 ) {
+    return symbol.replace('THETA', '');
+  }
+
 
   return false;
 }
@@ -128,7 +177,7 @@ async function getSellerSimbol(symbol){
     return "USDT";
   }
   else if ( symbol.indexOf('BUSD') === 0 ) {
-    return "USDT";
+    return "BUSD";
   }
 
   return false;
