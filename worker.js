@@ -180,52 +180,52 @@ async function getSellerSimbol(symbol){
     return "BUSD";
   }
   else if ( symbol.indexOf('SAND') === 0 ) {
-    return symbol.replace('SAND', '');
+    return "SAND";
   }
   else if ( symbol.indexOf('BNB') === 0 ) {
-    return symbol.replace('BNB', '');
+    return "BNB";
   }
   else if ( symbol.indexOf('AVAX') === 0 ) {
-    return symbol.replace('AVAX', '');
+    return "AVAX";
   }
   else if ( symbol.indexOf('FTM') === 0 ) {
-    return symbol.replace('FTM', '');
+    return "FTM";
   }
   else if ( symbol.indexOf('SOL') === 0 ) {
-    return symbol.replace('SOL', '');
+    return "SOL";
   }
   else if ( symbol.indexOf('MATIC') === 0 ) {
-    return symbol.replace('MATIC', '');
+    return "MATIC";
   }
   else if ( symbol.indexOf('DOT') === 0 ) {
-    return symbol.replace('DOT', '');
+    return "DOT";
   }
   else if ( symbol.indexOf('LINK') === 0 ) {
-    return symbol.replace('LINK', '');
+    return "LINK";
   }
   else if ( symbol.indexOf('ATOM') === 0 ) {
-    return symbol.replace('ATOM', '');
+    return "ATOM";
   }
   else if ( symbol.indexOf('LUNA') === 0 ) {
-    return symbol.replace('LUNA', '');
+    return "LUNA";
   }
   else if ( symbol.indexOf('ADA') === 0 ) {
-    return symbol.replace('ADA', '');
+    return "ADA";
   }
   else if ( symbol.indexOf('NEAR') === 0 ) {
-    return symbol.replace('NEAR', '');
+    return "NEAR";
   }
   else if ( symbol.indexOf('FTT') === 0 ) {
-    return symbol.replace('FTT', '');
+    return "FTT";
   }
   else if ( symbol.indexOf('EGLD') === 0 ) {
-    return symbol.replace('EGLD', '');
+    return "EGLD";
   }
   else if ( symbol.indexOf('HNT') === 0 ) {
-    return symbol.replace('HNT', '');
+    return "HNT";
   }
   else if ( symbol.indexOf('THETA') === 0 ) {
-    return symbol.replace('THETA', '');
+    return "THETA";
   }
 
   return false;
